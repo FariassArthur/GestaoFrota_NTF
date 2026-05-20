@@ -31,6 +31,32 @@ namespace GestaoFrota.BLL
 
         AbastecimentoDAL dal = AbastecimentoDAL.Instancia;
 
+        public void Update(Abastecimento info)
+{
+    // Validação básica de segurança antes de mandar para o banco
+    if (info == null)
+        throw new ArgumentNullException(nameof(info), "Os dados do abastecimento não podem ser nulos.");
+
+    if (info.Id <= 0)
+        throw new ArgumentException("ID inválido para atualização.");
+
+    // Mantém a regra do seu projeto de sincronizar a string da data
+    info.DataS = info.Data.ToShortDateString();
+
+    // Envia para a DAL salvar no Entity Framework
+    dal.Update(info);            
+}
+
+public void Delete(int id)
+{
+    // Validação de segurança
+    if (id <= 0)
+        throw new ArgumentException("ID inválido para exclusão.");
+
+    // Envia a ordem de remoção para a DAL
+    dal.Delete(id);
+}
+
         public void Insert(Abastecimento info)
         {
             info.DataS = info.Data.ToShortDateString();

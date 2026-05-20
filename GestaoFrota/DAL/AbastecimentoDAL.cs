@@ -44,6 +44,51 @@ namespace GestaoFrota.DAL
             }
         }
 
+        public void Update(Abastecimento info)
+{
+    using (var context = new Context())
+    {
+        // 1. Busca o abastecimento original que já existe no banco usando o ID
+        var abastecimentoBanco = context.Abastecimentos.Find(info.Id);
+
+        if (abastecimentoBanco != null)
+        {
+            // 2. Atualiza os campos com os novos dados vindos da BLL/Tela
+            abastecimentoBanco.Quantidade = info.Quantidade;
+            abastecimentoBanco.CombustivelId = info.CombustivelId;
+            abastecimentoBanco.Valor = info.Valor;
+            abastecimentoBanco.KM = info.KM;
+            abastecimentoBanco.PathComprovantePDF = info.PathComprovantePDF;
+            abastecimentoBanco.Data = info.Data;
+            abastecimentoBanco.DataS = info.DataS;
+            
+            // 3. Atualiza o relacionamento do veículo buscando a nova placa
+            abastecimentoBanco.Veiculo = context.Veiculos.Find(info.Veiculo.Placa);
+
+            // 4. Salva as alterações definitivamente no banco
+            context.SaveChanges();
+        }
+    }
+}
+
+public void Delete(int id)
+{
+    using (var context = new Context())
+    {
+        // 1. Localiza o abastecimento pelo ID
+        var info = context.Abastecimentos.Find(id);
+        
+        if (info != null)
+        {
+            // 2. Remove do contexto
+            context.Abastecimentos.Remove(info);
+            
+            // 3. Confirma a exclusão no banco
+            context.SaveChanges();
+        }
+    }
+}
+
         public List<DGridAbastecimentoInfo> List(DateTime dtInicial, DateTime dtFinal, Veiculo veiculo)
         {
             using (var context = new Context())

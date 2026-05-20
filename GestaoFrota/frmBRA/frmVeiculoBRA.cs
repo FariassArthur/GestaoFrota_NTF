@@ -510,6 +510,32 @@ namespace GestaoFrota
 
         }
 
+        private void btnExcluirAbastecimento_Click(object sender, EventArgs e)
+{
+    try
+    {
+        if (dtAbastecimento.CurrentRow == null)
+        {
+            MessageBox.Show("Selecione um abastecimento para excluir.", "Nenhum selecionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+
+        int id = (int)dtAbastecimento.CurrentRow.Cells[0].Value;
+
+        if (MessageBox.Show("Deseja realmente excluir este abastecimento?", "Confirmar exclusão",
+            MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+        {
+            abastecimentoBLL.Delete(id);
+            CarregaDatagridAoAbrir(dataInicialAtual, dataFinalAtual, veiculo);
+            CarregarDashboard();
+        }
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show($"Erro ao excluir abastecimento: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+}
+
         private void btnAplicarFiltroAbastecimentos_Click(object sender, EventArgs e)
         {
             dtAbastecimento.DataSource = abastecimentoBLL.ListPorFiltro(dateTimePickerFiltroDataInicial.Value.Date,

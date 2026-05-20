@@ -83,6 +83,7 @@
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.label66 = new System.Windows.Forms.Label();
             this.listBox3 = new System.Windows.Forms.ListBox();
+            this.btnExcluirAbastecimento = new System.Windows.Forms.Button();
             this.btnAdicionarComprovante = new System.Windows.Forms.Button();
             this.btnVisualizarComprovanteAbastecimento = new System.Windows.Forms.Button();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
@@ -686,6 +687,7 @@
             this.tabPageAbastecimento.Controls.Add(this.label12);
             this.tabPageAbastecimento.Controls.Add(this.panel14);
             this.tabPageAbastecimento.Controls.Add(this.panel4);
+            this.tabPageAbastecimento.Controls.Add(this.btnExcluirAbastecimento);
             this.tabPageAbastecimento.Controls.Add(this.btnAdicionarComprovante);
             this.tabPageAbastecimento.Controls.Add(this.btnVisualizarComprovanteAbastecimento);
             this.tabPageAbastecimento.Controls.Add(this.groupBox11);
@@ -780,6 +782,19 @@
             this.btnAdicionarComprovante.Name = "btnAdicionarComprovante";
             this.btnAdicionarComprovante.UseVisualStyleBackColor = false;
             this.btnAdicionarComprovante.Click += new System.EventHandler(this.btnAdicionarComprovante_Click);
+            //
+            // btnExcluirAbastecimento
+            //
+this.btnExcluirAbastecimento.BackColor = System.Drawing.Color.Tomato;
+this.btnExcluirAbastecimento.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+this.btnExcluirAbastecimento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+this.btnExcluirAbastecimento.Location = new System.Drawing.Point(591, 537);
+this.btnExcluirAbastecimento.Name = "btnExcluirAbastecimento";
+this.btnExcluirAbastecimento.Size = new System.Drawing.Size(137, 23);
+this.btnExcluirAbastecimento.TabIndex = 86;
+this.btnExcluirAbastecimento.Text = "Excluir Abastecimento";
+this.btnExcluirAbastecimento.UseVisualStyleBackColor = false;
+this.btnExcluirAbastecimento.Click += new System.EventHandler(this.btnExcluirAbastecimento_Click);
             // 
             // btnVisualizarComprovanteAbastecimento
             // 
@@ -2546,6 +2561,7 @@
         private System.Windows.Forms.DataGridView dtPagamentoSeguro;
         private System.Windows.Forms.Button btnAdicionarComprovantePagaSegu;
         private System.Windows.Forms.Button btnVisualizarComprovantePagaSegu;
+        private System.Windows.Forms.Button btnExcluirAbastecimento;
         private System.Windows.Forms.Button btnRenovarSeguro;
         private System.Windows.Forms.Button btnAnexarCartaoSeguro;
         private System.Windows.Forms.Label label52;
