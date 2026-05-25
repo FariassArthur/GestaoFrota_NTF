@@ -32,6 +32,21 @@ namespace GestaoFrota
             CarregaDatagrid();
         }
 
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (dtTipoManutencao.CurrentRow == null)
+            {
+                MessageBox.Show("Selecione um Tipo de Manutenção para excluir.", "Nenhum selecionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            int id = (int)dtTipoManutencao.CurrentRow.Cells[0].Value;
+            if (MessageBox.Show("Deseja realmente excluir este Tipo de Manutenção?", "Confirmar exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                manutencaoBLL.DeleteTipoManutencao(id);
+                CarregaDatagrid();
+            }
+        }
+
         private void CarregaDatagrid()
         {
             dtTipoManutencao.DataSource = manutencaoBLL.ListTipoManutencao();

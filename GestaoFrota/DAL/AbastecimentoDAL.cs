@@ -89,6 +89,19 @@ public void Delete(int id)
     }
 }
 
+public void DeleteComprovante(int id)
+{
+    using (var context = new Context())
+    {
+        var abastecimento = context.Abastecimentos.Find(id);
+        if (abastecimento != null)
+        {
+            abastecimento.PathComprovantePDF = null;
+            context.SaveChanges();
+        }
+    }
+}
+
         public List<DGridAbastecimentoInfo> List(DateTime dtInicial, DateTime dtFinal, Veiculo veiculo)
         {
             using (var context = new Context())

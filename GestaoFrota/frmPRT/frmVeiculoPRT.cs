@@ -604,6 +604,54 @@ namespace GestaoFrota
             }
         }
 
+        private void btnExcluirComprovante_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dtAbastecimento.CurrentRow == null)
+                {
+                    MessageBox.Show("Selecione um abastecimento para excluir o comprovante.", "Nenhum selecionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int id = (int)dtAbastecimento.CurrentRow.Cells[0].Value;
+
+                // PathComprovantePDF costuma ser armazenado como filename
+                string fileNameComprovante = dtAbastecimento.CurrentRow.Cells[7].Value?.ToString();
+
+                if (MessageBox.Show("Deseja realmente excluir o comprovante deste abastecimento?", "Confirmar exclusão",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                    return;
+
+                // Remove registro (mesma lógica do btnExcluirAbastecimento_Click)
+                abastecimentoBLL.Delete(id);
+
+                // Remove arquivo físico, se existir
+                if (!string.IsNullOrWhiteSpace(fileNameComprovante))
+                {
+                    try
+                    {
+                        string pathArquivo = Path.Combine(pathComprovante, fileNameComprovante);
+                        if (File.Exists(pathArquivo))
+                            File.Delete(pathArquivo);
+                    }
+                    catch (Exception exFile)
+                    {
+                        MessageBox.Show($"Registro excluído, mas falha ao remover o arquivo físico: {exFile.Message}", "Aviso",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+
+                CarregaDatagridAoAbrir(dataInicialAtual, dataFinalAtual, veiculo);
+                CarregarDashboard();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao excluir comprovante: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
         private void PreencherComboBoxAbastecimento()
         {
             var combusitiveis = combustivelBLL.GetList(veiculo);

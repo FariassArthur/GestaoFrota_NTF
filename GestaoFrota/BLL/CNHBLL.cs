@@ -57,5 +57,10 @@ namespace GestaoFrota.BLL
         {
             dal.Alterar(info);
         }
+
+        public void Delete(string numeroRegistro)
+        {
+            dal.Delete(numeroRegistro);
+        }
     }
 }

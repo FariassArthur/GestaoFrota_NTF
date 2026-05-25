@@ -54,6 +54,11 @@ namespace GestaoFrota.BLL
         {
             dal.Save(info);
         }
+
+        public void Delete(int id)
+        {
+            dal.Delete(id);
+        }
        
         public List<Seguradora> ListExport()
         {

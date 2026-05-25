@@ -94,6 +94,19 @@ namespace GestaoFrota.DAL
                 context.SaveChanges();
             }
         }
+
+        public void Delete(int id)
+        {
+            using (var context = new Context())
+            {
+                var seguradora = context.Seguradoras.Find(id);
+                if (seguradora != null)
+                {
+                    context.Seguradoras.Remove(seguradora);
+                    context.SaveChanges();
+                }
+            }
+        }
                 
         public List<Seguradora> ListExport()
         {

@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTipoManutencao));
             this.btnInserir = new System.Windows.Forms.Button();
             this.dtTipoManutencao = new System.Windows.Forms.DataGridView();
+            this.btnExcluir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtTipoManutencao)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,11 +61,25 @@
             this.dtTipoManutencao.Size = new System.Drawing.Size(395, 379);
             this.dtTipoManutencao.TabIndex = 29;
             // 
+            // btnExcluir
+            // 
+            this.btnExcluir.BackColor = System.Drawing.Color.IndianRed;
+            this.btnExcluir.FlatAppearance.BorderColor = System.Drawing.Color.IndianRed;
+            this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcluir.Location = new System.Drawing.Point(247, 397);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(75, 23);
+            this.btnExcluir.TabIndex = 31;
+            this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.UseVisualStyleBackColor = false;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            // 
             // frmTipoManutencao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(410, 432);
+            this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnInserir);
             this.Controls.Add(this.dtTipoManutencao);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -84,5 +99,6 @@
 
         private System.Windows.Forms.Button btnInserir;
         private System.Windows.Forms.DataGridView dtTipoManutencao;
+        private System.Windows.Forms.Button btnExcluir;
     }
 }

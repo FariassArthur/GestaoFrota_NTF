@@ -86,6 +86,7 @@
             this.btnExcluirAbastecimento = new System.Windows.Forms.Button();
             this.btnAdicionarComprovante = new System.Windows.Forms.Button();
             this.btnVisualizarComprovanteAbastecimento = new System.Windows.Forms.Button();
+            this.btnExcluirComprovante = new System.Windows.Forms.Button();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.btnRemoverFiltroCombustivel = new System.Windows.Forms.Button();
             this.cmbCombustivelAbastecimentoFiltro = new System.Windows.Forms.ComboBox();
@@ -687,6 +688,7 @@
             this.tabPageAbastecimento.Controls.Add(this.label12);
             this.tabPageAbastecimento.Controls.Add(this.panel14);
             this.tabPageAbastecimento.Controls.Add(this.panel4);
+            this.tabPageAbastecimento.Controls.Add(this.btnExcluirComprovante);
             this.tabPageAbastecimento.Controls.Add(this.btnExcluirAbastecimento);
             this.tabPageAbastecimento.Controls.Add(this.btnAdicionarComprovante);
             this.tabPageAbastecimento.Controls.Add(this.btnVisualizarComprovanteAbastecimento);
@@ -795,6 +797,19 @@ this.btnExcluirAbastecimento.TabIndex = 86;
 this.btnExcluirAbastecimento.Text = "Excluir Abastecimento";
 this.btnExcluirAbastecimento.UseVisualStyleBackColor = false;
 this.btnExcluirAbastecimento.Click += new System.EventHandler(this.btnExcluirAbastecimento_Click);
+            // 
+            // btnExcluirComprovante
+            // 
+            this.btnExcluirComprovante.BackColor = System.Drawing.Color.IndianRed;
+            this.btnExcluirComprovante.FlatAppearance.BorderColor = System.Drawing.Color.IndianRed;
+            this.btnExcluirComprovante.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcluirComprovante.Location = new System.Drawing.Point(399, 559);
+            this.btnExcluirComprovante.Name = "btnExcluirComprovante";
+            this.btnExcluirComprovante.Size = new System.Drawing.Size(137, 23);
+            this.btnExcluirComprovante.TabIndex = 107;
+            this.btnExcluirComprovante.Text = "Excluir Comprovante";
+            this.btnExcluirComprovante.UseVisualStyleBackColor = false;
+            this.btnExcluirComprovante.Click += new System.EventHandler(this.btnExcluirComprovante_Click);
             // 
             // btnVisualizarComprovanteAbastecimento
             // 
@@ -2562,6 +2577,7 @@ this.btnExcluirAbastecimento.Click += new System.EventHandler(this.btnExcluirAba
         private System.Windows.Forms.Button btnAdicionarComprovantePagaSegu;
         private System.Windows.Forms.Button btnVisualizarComprovantePagaSegu;
         private System.Windows.Forms.Button btnExcluirAbastecimento;
+        private System.Windows.Forms.Button btnExcluirComprovante;
         private System.Windows.Forms.Button btnRenovarSeguro;
         private System.Windows.Forms.Button btnAnexarCartaoSeguro;
         private System.Windows.Forms.Label label52;

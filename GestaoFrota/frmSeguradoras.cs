@@ -47,6 +47,21 @@ namespace GestaoFrota
             }
         }
 
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (dtSeguradoras.CurrentRow == null)
+            {
+                MessageBox.Show("Selecione uma Seguradora para excluir.", "Nenhuma selecionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            int id = (int)dtSeguradoras.CurrentRow.Cells[0].Value;
+            if (MessageBox.Show("Deseja realmente excluir esta Seguradora?", "Confirmar exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                seguradoraBLL.Delete(id);
+                PreencherDtSeguradoras();
+            }
+        }
+
         private void PreencherDtSeguradoras()
         {
             dtSeguradoras.DataSource = seguradoraBLL.ListDt();

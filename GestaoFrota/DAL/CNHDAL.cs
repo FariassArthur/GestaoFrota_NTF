@@ -86,5 +86,18 @@ namespace GestaoFrota.DAL
                 context.SaveChanges();
             }
         }
+
+        public void Delete(string numeroRegistro)
+        {
+            using (var context = new Context())
+            {
+                var cnh = context.CNHs.Find(numeroRegistro);
+                if (cnh != null)
+                {
+                    context.CNHs.Remove(cnh);
+                    context.SaveChanges();
+                }
+            }
+        }
     }
 }

@@ -84,6 +84,7 @@
             this.label66 = new System.Windows.Forms.Label();
             this.listBox3 = new System.Windows.Forms.ListBox();
             this.btnAdicionarComprovante = new System.Windows.Forms.Button();
+            this.btnExcluirComprovante = new System.Windows.Forms.Button();
             this.btnExcluirAbastecimento = new System.Windows.Forms.Button();
             this.btnVisualizarComprovanteAbastecimento = new System.Windows.Forms.Button();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
@@ -862,6 +863,7 @@
             this.tabPageAbastecimento.Controls.Add(this.label28);
             this.tabPageAbastecimento.Controls.Add(this.panel14);
             this.tabPageAbastecimento.Controls.Add(this.panel4);
+            this.tabPageAbastecimento.Controls.Add(this.btnExcluirComprovante);
             this.tabPageAbastecimento.Controls.Add(this.btnExcluirAbastecimento);
             this.tabPageAbastecimento.Controls.Add(this.btnAdicionarComprovante);
             this.tabPageAbastecimento.Controls.Add(this.btnVisualizarComprovanteAbastecimento);
@@ -3833,6 +3835,7 @@ this.btnExcluirAbastecimento.Click += new System.EventHandler(this.btnExcluirAba
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button btnAnexarComprovanteManutencao;
         private System.Windows.Forms.Button btnExcluirAbastecimento;
+        private System.Windows.Forms.Button btnExcluirComprovante;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.ComboBox cmbMecanica;

@@ -47,6 +47,21 @@ namespace GestaoFrota
             }            
         }
 
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (dtCNHs.CurrentRow == null)
+            {
+                MessageBox.Show("Selecione uma CNH para excluir.", "Nenhuma selecionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string numeroRegistro = (string)dtCNHs.CurrentRow.Cells[0].Value;
+            if (MessageBox.Show("Deseja realmente excluir esta CNH?", "Confirmar exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                cNHBLL.Delete(numeroRegistro);
+                CarregaDatagrid();
+            }
+        }
+
         private void CarregaDatagrid()
         {
             dtCNHs.DataSource = cNHBLL.ListDt();

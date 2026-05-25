@@ -32,6 +32,7 @@
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnVisualizar = new System.Windows.Forms.Button();
             this.dtMecanicas = new System.Windows.Forms.DataGridView();
+            this.btnExcluir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtMecanicas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,12 +74,26 @@
             this.dtMecanicas.Size = new System.Drawing.Size(804, 379);
             this.dtMecanicas.TabIndex = 23;
             // 
+            // btnExcluir
+            // 
+            this.btnExcluir.BackColor = System.Drawing.Color.IndianRed;
+            this.btnExcluir.FlatAppearance.BorderColor = System.Drawing.Color.IndianRed;
+            this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcluir.Location = new System.Drawing.Point(575, 397);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(75, 23);
+            this.btnExcluir.TabIndex = 12;
+            this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.UseVisualStyleBackColor = false;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            // 
             // frmMecanicas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(818, 432);
             this.Controls.Add(this.dtMecanicas);
+            this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnAlterar);
             this.Controls.Add(this.btnVisualizar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -99,5 +114,6 @@
         private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.Button btnVisualizar;
         private System.Windows.Forms.DataGridView dtMecanicas;
+        private System.Windows.Forms.Button btnExcluir;
     }
 }

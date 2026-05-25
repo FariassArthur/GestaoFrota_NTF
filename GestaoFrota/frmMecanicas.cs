@@ -53,5 +53,20 @@ namespace GestaoFrota
             frmVisuaMeca.ShowDialog();
             PreencherDtMecanicas();
         }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (dtMecanicas.CurrentRow == null)
+            {
+                MessageBox.Show("Selecione uma Mecânica para excluir.", "Nenhuma selecionada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            int id = (int)dtMecanicas.CurrentRow.Cells[0].Value;
+            if (MessageBox.Show("Deseja realmente excluir esta Mecânica?", "Confirmar exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                mecanicaBLL.Delete(id);
+                PreencherDtMecanicas();
+            }
+        }
     }
 }

@@ -57,6 +57,16 @@ public void Delete(int id)
     dal.Delete(id);
 }
 
+public void DeleteComprovante(int id)
+{
+    // Validação de segurança
+    if (id <= 0)
+        throw new ArgumentException("ID inválido para exclusão de comprovante.");
+
+    // Envia a ordem para remover apenas o comprovante
+    dal.DeleteComprovante(id);
+}
+
         public void Insert(Abastecimento info)
         {
             info.DataS = info.Data.ToShortDateString();

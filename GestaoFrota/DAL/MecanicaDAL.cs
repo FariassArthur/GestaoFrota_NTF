@@ -118,6 +118,23 @@ namespace GestaoFrota.DAL
         }
 
         /// <summary>
+        /// Deleta uma mecanica pelo ID
+        /// </summary>
+        /// <param name="id">id da mecanica a ser deletada</param>
+        public void Delete(int id)
+        {
+            using (var context = new Context())
+            {
+                var mec = context.Mecanicas.Find(id);
+                if (mec != null)
+                {
+                    context.Mecanicas.Remove(mec);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        /// <summary>
         /// Busca todos os dados cadastrados para exportar
         /// </summary>
         /// <returns>retorna lista de dados cadastados</returns>
