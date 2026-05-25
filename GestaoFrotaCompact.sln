@@ -1,5 +1,4 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -53,19 +52,5 @@ Global
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1C401C2F-FC61-4C4B-9EB0-5DFFAF6C6676}
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://ezequielsd.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = GestaoFrota\\GestaoFrota.csproj
-		SccProjectName1 = GestaoFrota
-		SccLocalPath1 = GestaoFrota
-		SccProjectUniqueName2 = CFsqlCe.Dal\\CFSqlCe.Dal.csproj
-		SccProjectName2 = CFsqlCe.Dal
-		SccLocalPath2 = CFsqlCe.Dal
-		SccProjectUniqueName3 = FIPE\\FIPE.csproj
-		SccProjectName3 = FIPE
-		SccLocalPath3 = FIPE
-	EndGlobalSection
+
 EndGlobal
