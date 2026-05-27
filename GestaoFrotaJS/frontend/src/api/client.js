@@ -72,6 +72,38 @@ export async function deleteItem(endpoint, id, token) {
   return response.json();
 }
 
+// User management
+export async function fetchUsers(token) {
+  const response = await fetch(`${apiBase}/api/usuarios`, { headers: getHeaders(token) });
+  return response.json();
+}
+
+export async function createUser(data, token) {
+  const response = await fetch(`${apiBase}/api/usuarios`, {
+    method: 'POST',
+    headers: getHeaders(token),
+    body: JSON.stringify(data)
+  });
+  return response.json();
+}
+
+export async function updateUser(id, data, token) {
+  const response = await fetch(`${apiBase}/api/usuarios/${id}`, {
+    method: 'PUT',
+    headers: getHeaders(token),
+    body: JSON.stringify(data)
+  });
+  return response.json();
+}
+
+export async function deleteUser(id, token) {
+  const response = await fetch(`${apiBase}/api/usuarios/${id}`, {
+    method: 'DELETE',
+    headers: getHeaders(token)
+  });
+  return response.json();
+}
+
 export async function fetchHealth(token) {
   const response = await fetch(`${apiBase}/api/health`, { headers: getHeaders(token) });
   return response.json();

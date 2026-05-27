@@ -253,9 +253,19 @@ async function initDb() {
       username TEXT NOT NULL UNIQUE,
       password TEXT NOT NULL,
       role TEXT DEFAULT 'user',
-      ativo INTEGER DEFAULT 1
+      ativo INTEGER DEFAULT 1,
+      permissoes TEXT DEFAULT 'all'
     )
   `);
+
+  try {
+    const userCols = await all(db, "PRAGMA table_info('usuarios')");
+    if (!userCols.some((c) => c.name === 'permissoes')) {
+      await run(db, `ALTER TABLE usuarios ADD COLUMN permissoes TEXT DEFAULT 'all'`);
+    }
+  } catch (err) {
+    console.warn('Could not ensure usuarios.permissoes column', err.message || err);
+  }
 
   await seedIfMissing(db, `INSERT OR IGNORE INTO combustiveis (tipo) VALUES (?), (?), (?), (?), (?), (?), (?), (?), (?), (?)`, [
     'Não definido', 'Gasolina', 'Alcool', 'Flex', 'GNV',

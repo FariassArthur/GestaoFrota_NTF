@@ -3,6 +3,8 @@ import LoginForm from './components/LoginForm';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import GenericModule from './components/GenericModule';
+import VersionPage from './components/VersionPage';
+import ConfiguracoesPage from './components/ConfiguracoesPage';
 import { MODULES, getByKey } from './modules/config';
 import { fetchList } from './api/client';
 
@@ -67,10 +69,14 @@ export default function App() {
         currentModule={currentModule?.label}
       />
       <div className="app-main">
-        <Sidebar currentKey={currentKey} onModuleSelect={setCurrentKey} />
+        <Sidebar currentKey={currentKey} onModuleSelect={setCurrentKey} user={user} />
         <main className="app-content">
           {currentKey === 'dashboard' ? (
             <Dashboard vehicles={vehicles} />
+          ) : currentKey === 'versao' ? (
+            <VersionPage />
+          ) : currentKey === 'configuracoes' ? (
+            <ConfiguracoesPage token={token} user={user} />
           ) : (
             <GenericModule
               moduleConfig={currentModule}

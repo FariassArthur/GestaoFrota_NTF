@@ -1,11 +1,13 @@
 const { registerAuthRoutes } = require('./auth');
 const { registerVeiculosRoutes } = require('./veiculos');
+const { registerUsuariosRoutes } = require('./usuarios');
 const { registerLookupRoutes } = require('./lookup');
 const { createRoutesFor } = require('./entityRoutes');
 
 function registerRoutes(app) {
   registerAuthRoutes(app);
   registerVeiculosRoutes(app);
+  registerUsuariosRoutes(app);
   registerLookupRoutes(app);
 
   // Generic CRUD entities

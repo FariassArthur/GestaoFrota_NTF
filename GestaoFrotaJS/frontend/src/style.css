@@ -630,6 +630,247 @@ body {
   box-shadow: 0 6px 16px rgba(255, 143, 53, 0.2);
 }
 
+/* ===== VERSION PAGE ===== */
+.version-page {
+  padding: 24px;
+}
+
+.version-page h2 {
+  margin: 0 0 4px;
+  color: var(--text-primary);
+  font-size: 1.3rem;
+}
+
+.version-subtitle {
+  color: var(--text-muted);
+  margin: 0 0 24px;
+  font-size: 0.9rem;
+}
+
+.changelog {
+  background: var(--bg-tertiary);
+  border-radius: 14px;
+  padding: 24px;
+  border: 1px solid var(--border-light);
+}
+
+.changelog h3 {
+  margin: 0 0 16px;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.changelog-version h4 {
+  margin: 0 0 8px;
+  color: var(--orange);
+  font-size: 0.95rem;
+}
+
+.changelog-version ul {
+  margin: 0 0 20px;
+  padding-left: 20px;
+}
+
+.changelog-version li {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* ===== CONFIG PAGE ===== */
+.config-section {
+  background: var(--bg-tertiary);
+  border-radius: 14px;
+  padding: 24px;
+  border: 1px solid var(--border-light);
+  margin-top: 20px;
+}
+
+.config-section h3 {
+  margin: 0 0 16px;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.section-header h3 {
+  margin: 0;
+}
+
+.config-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  align-items: end;
+}
+
+.config-form label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.config-form input {
+  padding: 10px 14px;
+  border: 1px solid var(--input-border);
+  border-radius: 10px;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.config-form input:focus {
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 0 3px var(--input-focus-shadow);
+}
+
+.config-form button {
+  align-self: end;
+}
+
+/* ===== USER FORM ===== */
+.user-form {
+  background: var(--card-bg);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-light);
+}
+
+.user-form h4 {
+  margin: 0 0 16px;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.user-form .form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  align-items: center;
+}
+
+.user-form .form-grid label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.user-form .form-grid input,
+.user-form .form-grid select {
+  padding: 10px 14px;
+  border: 1px solid var(--input-border);
+  border-radius: 10px;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.user-form .form-grid input:focus,
+.user-form .form-grid select:focus {
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 0 3px var(--input-focus-shadow);
+}
+
+.user-form .form-field {
+  margin-top: 16px;
+}
+
+.user-form .form-field > label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+/* ===== PERMISSIONS SELECTOR ===== */
+.permissoes-selector {
+  border: 1px solid var(--input-border);
+  border-radius: 10px;
+  padding: 12px;
+  background: var(--input-bg);
+}
+
+.permissoes-actions {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.permissoes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 6px;
+}
+
+.perm-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: background 0.1s;
+}
+
+.perm-checkbox:hover {
+  background: var(--orange-bg);
+}
+
+.perm-checkbox input[type="checkbox"] {
+  accent-color: var(--orange);
+  width: 16px;
+  height: 16px;
+}
+
+/* ===== MODULE SUCCESS ===== */
+.module-success {
+  background: color-mix(in srgb, var(--success) 15%, transparent);
+  color: var(--success);
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 1px solid color-mix(in srgb, var(--success) 30%, transparent);
+}
+
+/* ===== ACTIONS CELL ===== */
+.actions-cell {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 4px;
+  border-radius: 6px;
+  transition: background 0.1s;
+}
+
+.btn-icon:hover:not(:disabled) {
+  background: var(--orange-bg);
+}
+
+.btn-icon:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
   .module-content {

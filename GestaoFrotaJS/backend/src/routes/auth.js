@@ -11,7 +11,7 @@ function registerAuthRoutes(app) {
       if (!username || !password) {
         return res.status(400).json({ error: 'username e password são obrigatórios' });
       }
-      const user = await get(db, 'SELECT id, username, role, ativo, password FROM usuarios WHERE username = ?', [username]);
+      const user = await get(db, 'SELECT id, username, role, ativo, permissoes, password FROM usuarios WHERE username = ?', [username]);
       if (!user) {
         return res.status(401).json({ error: 'Usuário ou senha inválidos' });
       }
@@ -22,7 +22,7 @@ function registerAuthRoutes(app) {
       if (!match) return res.status(401).json({ error: 'Usuário ou senha inválidos' });
 
       const token = jwt.sign({ id: user.id, username: user.username, role: user.role }, JWT_SECRET, { expiresIn: '8h' });
-      res.json({ ok: true, token, user: { id: user.id, username: user.username, role: user.role } });
+      res.json({ ok: true, token, user: { id: user.id, username: user.username, role: user.role, permissoes: user.permissoes } });
     } catch (error) {
       res.status(500).json({ error: String(error.message || error) });
     } finally {
