@@ -1,5 +1,5 @@
 import React from 'react';
-import { getFileUrl } from '../api/client';
+import { getFileUrl, getItemValue } from '../api/client';
 
 export default function EntityTable({ items, fields, onSelect, onDelete }) {
   const displayFields = fields.slice(0, 8);
@@ -19,23 +19,26 @@ export default function EntityTable({ items, fields, onSelect, onDelete }) {
           {items && items.length > 0 ? (
             items.map((item, idx) => (
               <tr key={idx}>
-                {displayFields.map((field) => (
-                  <td key={field.name}>
-                    {field.type === 'file' && item[field.name] ? (
-                      <a
-                        href={getFileUrl(item[field.name])}
-                        className="file-link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        📎 Visualizar
-                      </a>
-                    ) : (
-                      String(item[field.name] || '').substring(0, 30)
-                    )}
-                  </td>
-                ))}
+                {displayFields.map((field) => {
+                  const val = getItemValue(item, field.name);
+                  return (
+                    <td key={field.name}>
+                      {field.type === 'file' && val ? (
+                        <a
+                          href={getFileUrl(val)}
+                          className="file-link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          📎 Visualizar
+                        </a>
+                      ) : (
+                        String(val || '').substring(0, 30)
+                      )}
+                    </td>
+                  );
+                })}
                 <td>
                   <button className="btn-edit" onClick={() => onSelect(item)} style={{ marginRight: 6 }}>
                     Editar

@@ -98,6 +98,7 @@ export const MODULES = [
     fields: [
       { name: 'data', label: 'Data', type: 'date' },
       { name: 'data_s', label: 'Data Texto' },
+      { name: 'classificacao', label: 'Classificação', type: 'select', options: ['preventiva', 'corretiva'] },
       { name: 'valor', label: 'Valor', type: 'number' },
       { name: 'descricao', label: 'Descrição', type: 'textarea' },
       { name: 'km', label: 'KM', type: 'number' },

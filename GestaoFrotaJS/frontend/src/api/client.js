@@ -77,6 +77,14 @@ export async function fetchHealth(token) {
   return response.json();
 }
 
+// Try camelCase first, then snake_case (API returns snake_case for some modules)
+export function getItemValue(item, fieldName) {
+  if (item == null) return undefined;
+  if (item[fieldName] !== undefined && item[fieldName] !== null) return item[fieldName];
+  const snake = fieldName.replace(/[A-Z]/g, (l) => '_' + l.toLowerCase());
+  return item[snake];
+}
+
 export function getFileUrl(filePath) {
   if (!filePath) return null;
   // stored paths are like "public/uploads/module/filename.pdf"

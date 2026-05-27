@@ -1,5 +1,5 @@
 import React from 'react';
-import { getFileUrl } from '../api/client';
+import { getFileUrl, getItemValue } from '../api/client';
 
 export default function EntityForm({
   fields,
@@ -32,6 +32,7 @@ export default function EntityForm({
     }
 
     if (field.type === 'file') {
+      const existingFile = !isNew ? getItemValue(formData, field.name) : null;
       return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <input
@@ -40,9 +41,9 @@ export default function EntityForm({
             className="form-input"
             onChange={(e) => onChange(field.name, e.target.files[0])}
           />
-          {!isNew && formData[field.name] && (
+          {existingFile && (
             <a
-              href={getFileUrl(formData[field.name])}
+              href={getFileUrl(existingFile)}
               className="file-link"
               target="_blank"
               rel="noopener noreferrer"
@@ -51,6 +52,24 @@ export default function EntityForm({
             </a>
           )}
         </div>
+      );
+    }
+
+    if (field.type === 'select' && field.options) {
+      return (
+        <select
+          id={field.name}
+          className="form-select"
+          value={value}
+          onChange={(e) => onChange(field.name, e.target.value)}
+        >
+          <option value="">-- selecione --</option>
+          {field.options.map((opt) => (
+            <option key={opt} value={opt}>
+              {opt.charAt(0).toUpperCase() + opt.slice(1)}
+            </option>
+          ))}
+        </select>
       );
     }
 

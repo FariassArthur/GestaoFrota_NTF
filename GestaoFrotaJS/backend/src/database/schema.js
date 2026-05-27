@@ -109,6 +109,7 @@ async function initDb() {
       valor REAL,
       descricao TEXT,
       km INTEGER,
+      classificacao TEXT DEFAULT 'preventiva',
       path_comprovante_pdf TEXT,
       veiculo_id TEXT,
       mecanica_id INTEGER,
@@ -118,6 +119,15 @@ async function initDb() {
       FOREIGN KEY (tipo_manutencao_id) REFERENCES tipo_manutencao(id) ON DELETE SET NULL
     )
   `);
+
+  try {
+    const cols = await all(db, "PRAGMA table_info('manutencoes')");
+    if (!cols.some((c) => c.name === 'classificacao')) {
+      await run(db, `ALTER TABLE manutencoes ADD COLUMN classificacao TEXT DEFAULT 'preventiva'`);
+    }
+  } catch (err) {
+    console.warn('Could not ensure manutencoes.classificacao column', err.message || err);
+  }
 
   await run(db, `
     CREATE TABLE IF NOT EXISTS multas (

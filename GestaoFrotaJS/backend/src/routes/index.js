@@ -35,7 +35,7 @@ function registerRoutes(app) {
     name: 'manutencoes',
     tableName: 'manutencoes',
     keyField: 'id',
-    fields: ['data', 'data_s', 'valor', 'descricao', 'km', 'path_comprovante_pdf', 'veiculo_id', 'mecanica_id', 'tipo_manutencao_id'],
+    fields: ['data', 'data_s', 'classificacao', 'valor', 'descricao', 'km', 'path_comprovante_pdf', 'veiculo_id', 'mecanica_id', 'tipo_manutencao_id'],
     fileFields: ['path_comprovante_pdf']
   });
 
