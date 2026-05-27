@@ -5,6 +5,7 @@ import Sidebar from './components/Sidebar';
 import GenericModule from './components/GenericModule';
 import VersionPage from './components/VersionPage';
 import ConfiguracoesPage from './components/ConfiguracoesPage';
+import Dashboard from './components/Dashboard';
 import { MODULES, getByKey } from './modules/config';
 import { fetchList } from './api/client';
 
@@ -72,7 +73,7 @@ export default function App() {
         <Sidebar currentKey={currentKey} onModuleSelect={setCurrentKey} user={user} />
         <main className="app-content">
           {currentKey === 'dashboard' ? (
-            <Dashboard vehicles={vehicles} />
+            <Dashboard token={token} />
           ) : currentKey === 'versao' ? (
             <VersionPage />
           ) : currentKey === 'configuracoes' ? (
@@ -90,20 +91,4 @@ export default function App() {
   );
 }
 
-function Dashboard({ vehicles }) {
-  return (
-    <div className="dashboard">
-      <h2>Dashboard</h2>
-      <p>Bem-vindo ao sistema de gestão de frota!</p>
-      <div className="stats-grid">
-        <div className="stat-card">
-          <h3>{vehicles.length}</h3>
-          <p>Veículos Registrados</p>
-        </div>
-      </div>
-      <p style={{ fontSize: '14px', color: '#888', marginTop: '20px' }}>
-        Selecione um módulo no menu lateral para começar a trabalhar.
-      </p>
-    </div>
-  );
-}
+
