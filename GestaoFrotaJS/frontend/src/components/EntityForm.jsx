@@ -33,6 +33,7 @@ export default function EntityForm({
 
     if (field.type === 'file') {
       const existingFile = !isNew ? getItemValue(formData, field.name) : null;
+      const hasExistingFile = existingFile && typeof existingFile === 'string';
       return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <input
@@ -41,7 +42,7 @@ export default function EntityForm({
             className="form-input"
             onChange={(e) => onChange(field.name, e.target.files[0])}
           />
-          {existingFile && (
+          {hasExistingFile && (
             <a
               href={getFileUrl(existingFile)}
               className="file-link"

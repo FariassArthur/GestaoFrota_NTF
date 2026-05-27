@@ -81,12 +81,12 @@ export async function fetchHealth(token) {
 export function getItemValue(item, fieldName) {
   if (item == null) return undefined;
   if (item[fieldName] !== undefined && item[fieldName] !== null) return item[fieldName];
-  const snake = fieldName.replace(/[A-Z]/g, (l) => '_' + l.toLowerCase());
+  const snake = fieldName.replace(/([a-z0-9])([A-Z])/g, '$1_$2').toLowerCase();
   return item[snake];
 }
 
 export function getFileUrl(filePath) {
-  if (!filePath) return null;
+  if (!filePath || typeof filePath !== 'string') return null;
   // stored paths are like "public/uploads/module/filename.pdf"
   // strip the "public/" prefix to get the URL path
   const cleaned = filePath.replace(/^public[\\/]/, '');

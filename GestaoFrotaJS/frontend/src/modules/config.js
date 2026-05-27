@@ -16,6 +16,7 @@ export const MODULES = [
     fields: [
       { name: 'placa', label: 'Placa', type: 'text', required: true },
       { name: 'tipo', label: 'Tipo' },
+      { name: 'pathDocumentoPDF', label: 'Documento', type: 'file' },
       { name: 'fipeNameMarca', label: 'Marca FIPE' },
       { name: 'fipeModelo', label: 'Modelo FIPE' },
       { name: 'fipeNameAno', label: 'Ano FIPE' },
@@ -38,7 +39,6 @@ export const MODULES = [
       { name: 'cultureInfo', label: 'Culture Info' },
       { name: 'medidasPneus', label: 'Medidas Pneus' },
       { name: 'codigoPostal', label: 'CEP' },
-      { name: 'pathDocumentoPDF', label: 'Arquivo PDF', type: 'file' },
       { name: 'dataVencimentoIPVA', label: 'Vencimento IPVA', type: 'date' },
       { name: 'ativo', label: 'Ativo', type: 'checkbox' }
     ]

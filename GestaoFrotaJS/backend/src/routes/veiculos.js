@@ -1,6 +1,11 @@
 const { openDb, run, all, get, parseBoolean, parseInteger } = require('../database/connection');
 const { filePathFor } = require('../middleware/upload');
 
+// Accept camelCase or snake_case from body
+function val(body, camel, snake) {
+  return body[camel] !== undefined ? body[camel] : body[snake];
+}
+
 function registerVeiculosRoutes(app) {
   app.get('/api/veiculos', async (req, res) => {
     const db = openDb();
@@ -30,20 +35,38 @@ function registerVeiculosRoutes(app) {
   app.post('/api/veiculos', async (req, res) => {
     const db = openDb();
     const body = req.body || {};
-    const { placa } = body;
-    const pathDocumentoPDF = filePathFor('pathDocumentoPDF', req) || body.pathDocumentoPDF || null;
+    const placa = val(body, 'placa', 'placa');
+    const pathDocumentoPDF = filePathFor('pathDocumentoPDF', req) || val(body, 'pathDocumentoPDF', 'path_documento_pdf') || null;
     try {
       if (!placa) return res.status(400).json({ error: 'placa é obrigatória' });
       const params = [
-        placa, body.tipo || null, body.fipeNameMarca || null, body.fipeModelo || null,
-        body.fipeNameAno || null, body.renavam || null, body.chassi || null,
-        parseInteger(body.combustivel), body.anoFab || null, body.anoModelo || null,
-        body.capacidade || null, body.cor || null, body.cidade || null, body.uf || null,
-        body.cpfcnpj || null, body.categoria || null, parseInteger(body.km),
-        body.nomeEndereco || null, body.dataAquisicao || null, body.observacao || null,
-        body.potencia || null, body.cultureInfo || null, body.medidasPneus || null,
-        body.codigoPostal || null, pathDocumentoPDF, body.dataVencimentoIPVA || null,
-        parseBoolean(body.ativo) ? 1 : 0
+        placa,
+        val(body, 'tipo', 'tipo') || null,
+        val(body, 'fipeNameMarca', 'fipe_name_marca') || null,
+        val(body, 'fipeModelo', 'fipe_modelo') || null,
+        val(body, 'fipeNameAno', 'fipe_name_ano') || null,
+        val(body, 'renavam', 'renavam') || null,
+        val(body, 'chassi', 'chassi') || null,
+        parseInteger(val(body, 'combustivel', 'combustivel')),
+        val(body, 'anoFab', 'ano_fab') || null,
+        val(body, 'anoModelo', 'ano_modelo') || null,
+        val(body, 'capacidade', 'capacidade') || null,
+        val(body, 'cor', 'cor') || null,
+        val(body, 'cidade', 'cidade') || null,
+        val(body, 'uf', 'uf') || null,
+        val(body, 'cpfcnpj', 'cpfcnpj') || null,
+        val(body, 'categoria', 'categoria') || null,
+        parseInteger(val(body, 'km', 'km')),
+        val(body, 'nomeEndereco', 'nome_endereco') || null,
+        val(body, 'dataAquisicao', 'data_aquisicao') || null,
+        val(body, 'observacao', 'observacao') || null,
+        val(body, 'potencia', 'potencia') || null,
+        val(body, 'cultureInfo', 'culture_info') || null,
+        val(body, 'medidasPneus', 'medidas_pneus') || null,
+        val(body, 'codigoPostal', 'codigo_postal') || null,
+        pathDocumentoPDF,
+        val(body, 'dataVencimentoIPVA', 'data_vencimento_ipva') || null,
+        parseBoolean(val(body, 'ativo', 'ativo')) ? 1 : 0
       ];
       await run(
         db,
@@ -63,7 +86,7 @@ function registerVeiculosRoutes(app) {
   app.put('/api/veiculos/:placa', async (req, res) => {
     const db = openDb();
     const body = req.body || {};
-    const pathDocumentoPDF = filePathFor('pathDocumentoPDF', req) || body.pathDocumentoPDF || null;
+    const pathDocumentoPDF = filePathFor('pathDocumentoPDF', req) || val(body, 'pathDocumentoPDF', 'path_documento_pdf') || null;
     try {
       const placa = req.params.placa;
       if (!placa) return res.status(400).json({ error: 'placa inválida' });
@@ -73,14 +96,33 @@ function registerVeiculosRoutes(app) {
         db,
         `UPDATE veiculos SET tipo = ?, fipe_name_marca = ?, fipe_modelo = ?, fipe_name_ano = ?, renavam = ?, chassi = ?, combustivel = ?, ano_fab = ?, ano_modelo = ?, capacidade = ?, cor = ?, cidade = ?, uf = ?, cpfcnpj = ?, categoria = ?, km = ?, nome_endereco = ?, data_aquisicao = ?, observacao = ?, potencia = ?, culture_info = ?, medidas_pneus = ?, codigo_postal = ?, path_documento_pdf = ?, data_vencimento_ipva = ?, ativo = ? WHERE placa = ?`,
         [
-          body.tipo || null, body.fipeNameMarca || null, body.fipeModelo || null, body.fipeNameAno || null,
-          body.renavam || null, body.chassi || null, parseInteger(body.combustivel),
-          body.anoFab || null, body.anoModelo || null, body.capacidade || null, body.cor || null,
-          body.cidade || null, body.uf || null, body.cpfcnpj || null, body.categoria || null,
-          parseInteger(body.km), body.nomeEndereco || null, body.dataAquisicao || null,
-          body.observacao || null, body.potencia || null, body.cultureInfo || null,
-          body.medidasPneus || null, body.codigoPostal || null, pathDocumentoPDF,
-          body.dataVencimentoIPVA || null, parseBoolean(body.ativo) ? 1 : 0, placa
+          val(body, 'tipo', 'tipo') || null,
+          val(body, 'fipeNameMarca', 'fipe_name_marca') || null,
+          val(body, 'fipeModelo', 'fipe_modelo') || null,
+          val(body, 'fipeNameAno', 'fipe_name_ano') || null,
+          val(body, 'renavam', 'renavam') || null,
+          val(body, 'chassi', 'chassi') || null,
+          parseInteger(val(body, 'combustivel', 'combustivel')),
+          val(body, 'anoFab', 'ano_fab') || null,
+          val(body, 'anoModelo', 'ano_modelo') || null,
+          val(body, 'capacidade', 'capacidade') || null,
+          val(body, 'cor', 'cor') || null,
+          val(body, 'cidade', 'cidade') || null,
+          val(body, 'uf', 'uf') || null,
+          val(body, 'cpfcnpj', 'cpfcnpj') || null,
+          val(body, 'categoria', 'categoria') || null,
+          parseInteger(val(body, 'km', 'km')),
+          val(body, 'nomeEndereco', 'nome_endereco') || null,
+          val(body, 'dataAquisicao', 'data_aquisicao') || null,
+          val(body, 'observacao', 'observacao') || null,
+          val(body, 'potencia', 'potencia') || null,
+          val(body, 'cultureInfo', 'culture_info') || null,
+          val(body, 'medidasPneus', 'medidas_pneus') || null,
+          val(body, 'codigoPostal', 'codigo_postal') || null,
+          pathDocumentoPDF,
+          val(body, 'dataVencimentoIPVA', 'data_vencimento_ipva') || null,
+          parseBoolean(val(body, 'ativo', 'ativo')) ? 1 : 0,
+          placa
         ]
       );
       res.json({ ok: true });

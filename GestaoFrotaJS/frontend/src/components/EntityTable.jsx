@@ -2,7 +2,10 @@ import React from 'react';
 import { getFileUrl, getItemValue } from '../api/client';
 
 export default function EntityTable({ items, fields, onSelect, onDelete }) {
-  const displayFields = fields.slice(0, 8);
+  // Show first 8 fields + any file fields beyond that (so documents are always visible)
+  const baseFields = fields.slice(0, 8);
+  const extraFileFields = fields.slice(8).filter((f) => f.type === 'file');
+  const displayFields = [...baseFields, ...extraFileFields];
 
   return (
     <div className="table-wrapper">
@@ -21,11 +24,12 @@ export default function EntityTable({ items, fields, onSelect, onDelete }) {
               <tr key={idx}>
                 {displayFields.map((field) => {
                   const val = getItemValue(item, field.name);
+                  const fileUrl = field.type === 'file' ? getFileUrl(val) : null;
                   return (
                     <td key={field.name}>
-                      {field.type === 'file' && val ? (
+                      {fileUrl ? (
                         <a
-                          href={getFileUrl(val)}
+                          href={fileUrl}
                           className="file-link"
                           target="_blank"
                           rel="noopener noreferrer"
