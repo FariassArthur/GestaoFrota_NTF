@@ -1,0 +1,86 @@
+// API client with authentication support
+export const apiBase = window.location.protocol === 'file:' ? 'http://localhost:3001' : '';
+
+export const getHeaders = (token) => {
+  const headers = { 'Content-Type': 'application/json' };
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+  return headers;
+};
+
+export const buildRequest = (formData, token) => {
+  const form = new FormData();
+  let hasFile = false;
+
+  Object.entries(formData).forEach(([key, value]) => {
+    if (value instanceof File) {
+      hasFile = true;
+      form.append(key, value);
+    } else if (typeof value === 'boolean') {
+      form.append(key, String(value));
+    } else if (value !== undefined && value !== null) {
+      form.append(key, value);
+    }
+  });
+
+  if (hasFile) {
+    return { body: form, headers: { 'Authorization': `Bearer ${token}` } };
+  }
+
+  return { body: JSON.stringify(formData), headers: getHeaders(token) };
+};
+
+// Auth endpoints
+export async function login(username, password) {
+  const response = await fetch(`${apiBase}/api/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password })
+  });
+  return response.json();
+}
+
+// Generic CRUD operations
+export async function fetchList(endpoint, token) {
+  const response = await fetch(`${apiBase}${endpoint}`, { headers: getHeaders(token) });
+  return response.json();
+}
+
+export async function fetchOne(endpoint, id, token) {
+  const response = await fetch(`${apiBase}${endpoint}/${id}`, { headers: getHeaders(token) });
+  return response.json();
+}
+
+export async function createItem(endpoint, data, token) {
+  const { body, headers } = buildRequest(data, token);
+  const response = await fetch(`${apiBase}${endpoint}`, { method: 'POST', body, headers });
+  return response.json();
+}
+
+export async function updateItem(endpoint, id, data, token) {
+  const { body, headers } = buildRequest(data, token);
+  const response = await fetch(`${apiBase}${endpoint}/${id}`, { method: 'PUT', body, headers });
+  return response.json();
+}
+
+export async function deleteItem(endpoint, id, token) {
+  const response = await fetch(`${apiBase}${endpoint}/${id}`, {
+    method: 'DELETE',
+    headers: getHeaders(token)
+  });
+  return response.json();
+}
+
+export async function fetchHealth(token) {
+  const response = await fetch(`${apiBase}/api/health`, { headers: getHeaders(token) });
+  return response.json();
+}
+
+export function getFileUrl(filePath) {
+  if (!filePath) return null;
+  // stored paths are like "public/uploads/module/filename.pdf"
+  // strip the "public/" prefix to get the URL path
+  const cleaned = filePath.replace(/^public[\\/]/, '');
+  return `${apiBase}/files/${cleaned}`;
+}

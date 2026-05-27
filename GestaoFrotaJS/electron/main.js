@@ -6,7 +6,7 @@ let mainWindow;
 let backendProcess;
 
 function startBackend() {
-  const backendPath = path.join(__dirname, '..', 'backend', 'server.js');
+  const backendPath = path.join(__dirname, '..', 'backend', 'src', 'server.js');
   backendProcess = spawn(process.execPath, [backendPath], {
     env: {
       ...process.env,
